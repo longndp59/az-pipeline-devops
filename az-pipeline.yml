@@ -1,0 +1,21 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.x'
+    displayName: 'Cài đặt Node.js'
+
+  - script: |
+      npm install
+    displayName: 'Cài đặt các package'
+
+  - script: |
+      npm test
+    displayName: 'Chạy unit test'
